@@ -1,0 +1,20 @@
+# 🔑 시크릿 — 절대 커밋 금지
+raw/뉴스루틴_네이버api-키.txt
+*api*키*.txt
+*.key
+*.pem
+.env
+.env.*
+
+# Obsidian 로컬 UI 상태 (변경 잦고 불필요)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# 수집 로그 (생성 시)
+scripts/logs/
+
+# OS 잡파일
+Thumbs.db
+.DS_Store
+desktop.ini
