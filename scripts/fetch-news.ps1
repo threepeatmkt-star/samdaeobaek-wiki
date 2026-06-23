@@ -98,4 +98,17 @@ foreach ($kw in $cfg.keywords) {
 $marketPath = Join-Path $vault ($cfg.marketOut -replace '\{date\}', $runStamp)
 Write-Utf8 $marketPath $mb.ToString()
 Write-Host "[fetch] wrote $marketPath"
+
+# --- GitHub 동기화: 수집한 raw를 push해서 클라우드 /뉴스정리 루틴이 읽게 함 ---
+# (API 키 파일은 .gitignore로 제외됨 — 절대 올라가지 않음)
+try {
+  Set-Location $vault
+  git add -- raw 2>$null
+  git commit -m "auto: 뉴스 수집 $runStamp" 2>$null | Out-Null
+  git pull --rebase --autostash 2>$null | Out-Null
+  git push 2>$null | Out-Null
+  Write-Host "[fetch] synced raw to GitHub"
+} catch {
+  Write-Host "[fetch] git sync skipped: $($_.Exception.Message)"
+}
 Write-Host "[fetch] done."
