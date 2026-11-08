@@ -1,0 +1,189 @@
+<title>경쟁사 매대 레이더 11월</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
+<style>
+/* 레이아웃: 단일 컬럼 리포트. 요약 → 매대 규모 차트 → 카테고리 표 → 신규 추적 → 액션 순. */
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --fg:#14181E; --muted:#5B6573; --line:#DCE0E6;
+  --accent:#0E6B5A; --accent-soft:#E2F1EC; --own:#B4470F; --own-soft:#FBEADF; --warn:#9A6A00;
+  --display:"Noto Serif KR","Apple SD Gothic Neo",serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1216; --surface:#171B21; --fg:#E7EAEE; --muted:#9AA4B1; --line:#2A3039;
+  --accent:#4FC2A8; --accent-soft:#16302A; --own:#F08A4B; --own-soft:#3A2416; --warn:#E3B341; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1216; --surface:#171B21; --fg:#E7EAEE; --muted:#9AA4B1; --line:#2A3039;
+  --accent:#4FC2A8; --accent-soft:#16302A; --own:#F08A4B; --own-soft:#3A2416; --warn:#E3B341; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.65}
+.wrap{max-width:920px;margin:0 auto;padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:44px}
+h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(28px,5vw,40px);font-weight:900}
+h2{font-size:22px;font-weight:700}
+p{margin:0;max-width:68ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:13px}
+.eyebrow{font-size:12px;letter-spacing:.08em;color:var(--accent);font-weight:600}
+header{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding-bottom:28px}
+.lede{font-size:17px;color:var(--fg)}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.sub{color:var(--muted);font-size:13.5px}
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.finding b{font-size:15.5px}
+.finding .tag{font-size:12px;font-weight:600;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.row{display:grid;grid-template-columns:96px 1fr 76px;align-items:center;gap:10px;font-size:13.5px}
+.row .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{height:14px;background:var(--bg);border-radius:3px;overflow:hidden}
+.bar{height:100%;background:var(--accent);border-radius:3px}
+.row.own .bar{background:var(--own)}
+.row.own .name{color:var(--own);font-weight:700}
+.row .val{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.axis{display:grid;grid-template-columns:96px 1fr 76px;gap:10px;font-size:11.5px;color:var(--muted)}
+.axis .ticks{display:flex;justify-content:space-between}
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em;background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.pill.own{background:var(--own-soft);color:var(--own)}
+.pill.eq{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.hl{color:var(--own);font-weight:600}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.act h3{margin:0;font-size:15px}
+.act ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.idea{border-left:3px solid var(--warn);padding:12px 16px;background:var(--surface);border-radius:0 8px 8px 0;display:flex;flex-direction:column;gap:6px}
+.idea .label{font-size:12px;font-weight:700;color:var(--warn)}
+.idea ul{margin:0;padding-left:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.chip small{color:var(--muted)}
+ul.plain{margin:0;padding-left:18px;color:var(--muted);font-size:13.5px;display:flex;flex-direction:column;gap:4px}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:520px){.row,.axis{grid-template-columns:76px 1fr 60px}}
+</style>
+
+<div class="wrap">
+<header>
+  <span class="eyebrow">🛰️ 경쟁사 레이더 · 네이버 쇼핑 매대 스냅샷</span>
+  <h1>경쟁사 매대 레이더 — 2026년 11월</h1>
+  <p class="lede">뉴스·블로그에는 잘 안 보이지만 <b>매대에서 실제로 팔리는 경쟁자</b>를 찾기 위해, ego 브라우저로 네이버 쇼핑 26개 검색어를 수집했습니다. 그 결과 추적 경쟁사를 <b class="num">12곳 → 24곳</b>으로 늘렸습니다.</p>
+  <div class="meta"><span>수집일 2026-11-05</span><span>검색어 26개(추적 13 + 카테고리 13)</span><span>기준: 비로그인 기본 랭킹 상위 약 40개 상품, 광고 제외</span></div>
+</header>
+
+<section>
+  <h2>한눈에 보는 결론</h2>
+  <div class="findings">
+    <div class="finding"><span class="tag">삼대오백</span><b>'부스터 헬스' 매대는 이미 우리 것</b><p>상위 8개 상품 중 5개가 삼대오백. 크레아틴 대표 상품 리뷰도 잠백이(1.2만)보다 많은 <span class="num">1.8만</span>.</p></div>
+    <div class="finding"><span class="tag">삼대오백 · 위협</span><b>크레아틴 1위는 해외 브랜드 뉴트리코스트</b><p>리뷰 <span class="num">3.9만</span>, 19,270원. 뉴스엔 안 잡히지만 매대에선 우리(1.8만, 17,900원)보다 위.</p></div>
+    <div class="finding"><span class="tag">WELLNESS</span><b>노릴 키워드는 '다이어트 쉐이크'</b><p>'여성 단백질 쉐이크'는 상품 <span class="num">4,822</span>개로 작고, '다이어트 쉐이크'는 <span class="num">18.8만</span>개. 상위권은 <b>곡물맛 쉐이크</b>(그리밀 5.4만·프로티원 3.8만).</p></div>
+    <div class="finding"><span class="tag">MXSSIVE</span><b>벨트는 시크·제로투히어로와 정면 대결</b><p>둘 다 리뷰 <span class="num">1.2만</span>. 홈트 덤벨 1위는 6,000원 <b>미용 아령</b>(케이필 1.9만) — 여성 라이트 장비 수요 신호.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>추적 브랜드 매대 규모</h2>
+  <p class="sub">상위 약 40개 상품(광고 제외)의 누적 리뷰 수 합계. 판매량이 아니라 '쌓인 후기 규모'입니다. 이그니스는 검색 결과가 전자담배·텐트로 오염되어 제외했습니다.</p>
+  <div class="chart" role="img" aria-label="브랜드별 상위 40개 상품 리뷰 합계 막대 차트">
+    <div class="row"><span class="name">셀렉스</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="val">378,775</span></div>
+    <div class="row"><span class="name">하이뮨</span><div class="track"><div class="bar" style="width:54.2%"></div></div><span class="val">205,137</span></div>
+    <div class="row"><span class="name">플라이밀</span><div class="track"><div class="bar" style="width:35.5%"></div></div><span class="val">134,372</span></div>
+    <div class="row own"><span class="name">삼대오백</span><div class="track"><div class="bar" style="width:32.4%"></div></div><span class="val">122,682</span></div>
+    <div class="row"><span class="name">맥스컷</span><div class="track"><div class="bar" style="width:25.6%"></div></div><span class="val">96,871</span></div>
+    <div class="row"><span class="name">익스트림</span><div class="track"><div class="bar" style="width:23.7%"></div></div><span class="val">89,889</span></div>
+    <div class="row"><span class="name">테이크핏</span><div class="track"><div class="bar" style="width:21%"></div></div><span class="val">79,509</span></div>
+    <div class="row"><span class="name">칼로바이</span><div class="track"><div class="bar" style="width:19.7%"></div></div><span class="val">74,567</span></div>
+    <div class="row"><span class="name">잠백이</span><div class="track"><div class="bar" style="width:12.1%"></div></div><span class="val">45,688</span></div>
+    <div class="row"><span class="name">제로투히어로</span><div class="track"><div class="bar" style="width:6.1%"></div></div><span class="val">23,017</span></div>
+    <div class="row"><span class="name">일화 팅글</span><div class="track"><div class="bar" style="width:1.9%"></div></div><span class="val">7,106</span></div>
+    <div class="row"><span class="name">퓨어틴</span><div class="track"><div class="bar" style="width:.3%"></div></div><span class="val">377</span></div>
+    <div class="axis"><span></span><div class="ticks num"><span>0</span><span>10만</span><span>20만</span><span>30만</span><span></span></div><span></span></div>
+  </div>
+  <ul class="plain">
+    <li><b>익스트림</b>의 실체는 아르기닌 브랜드(트리플 아르기닌 리뷰 1.9만, 김종국 모델) → 수집 쿼리를 <code>익스트림 아르기닌</code>으로 교정.</li>
+    <li><b>퓨어틴</b>(매일유업)은 7월 출시 후 코스트코 중심이라 온라인 매대는 아직 초기(리뷰 377).</li>
+    <li><b>플라이밀</b>은 5/9/14종 <b>스타터팩 19,900원</b>이 리뷰 1.7만 — 맛 탐색 키트 구성이 효과적이라는 근거.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>카테고리 매대 — 누가 1등인가</h2>
+  <div class="tablebox">
+  <table>
+    <thead><tr><th>검색어</th><th>상품 수</th><th>리뷰 최다 상위</th><th>시사점</th></tr></thead>
+    <tbody>
+      <tr><td>다이어트 쉐이크</td><td class="n">188,057</td><td>하이뮨 · 그리밀 · 메이크바디 · 셀렉스 · 봄날이오다(산양유)</td><td><span class="pill">WELLNESS 본진</span></td></tr>
+      <tr><td>단백질쉐이크</td><td class="n">207,023</td><td>하이뮨(5.7만) · 그리밀 곡물맛(5.4만) · 프로티원 곡물맛(3.8만) · 메이크바디(3.1만)</td><td>곡물맛·식사대용 강세</td></tr>
+      <tr><td>여성 단백질 쉐이크</td><td class="n">4,822</td><td>뉴트잇(어린이) · 베노프 · 모닝파파(임산부)</td><td>키워드 자체가 작음</td></tr>
+      <tr><td>크레아틴</td><td class="n">44,408</td><td>뉴트리코스트(3.9만) · <span class="hl">삼대오백(1.8만)</span> · 잠백이(1.2만) · 제트리션 정제</td><td><span class="pill own">삼대오백 2위</span></td></tr>
+      <tr><td>부스터 헬스</td><td class="n">8,965</td><td>엑스텐드 BCAA(3.1만) · <span class="hl">삼대오백 5개 상품</span> · 얼티밋포텐셜</td><td><span class="pill own">삼대오백 강세</span></td></tr>
+      <tr><td>WPI 프로틴</td><td class="n">24,843</td><td>그리밀 · 메이크바디 · 헬시오 · 뉴욕웨이(1만) · 저먼프로트</td><td>삼대오백 상위 8개 밖</td></tr>
+      <tr><td>단백질 음료</td><td class="n">119,130</td><td>셀렉스(3.1만) · 더단백 초코(2.5만, 20,850원) · 테이크핏 · 뉴케어</td><td>더단백 저가 장악</td></tr>
+      <tr><td>저당 단백질바</td><td class="n">3,484</td><td>빼바(1.5만, 글루텐프리) · 하루단백바 · 닥터유</td><td>소형, 빼바 독주</td></tr>
+      <tr><td>헬스 벨트 리프팅</td><td class="n">21,600</td><td>시크(1.2만) · 제로투히어로 가죽벨트(1.2만) · 하빈져(1만)</td><td><span class="pill eq">MXSSIVE 경쟁</span></td></tr>
+      <tr><td>홈트 덤벨</td><td class="n">70,671</td><td>케이필 미용 아령 1kg 6,000원(1.9만) · 베스코 · 아리프</td><td>여성·라이트 장비 1위</td></tr>
+      <tr><td>파워랙</td><td class="n">14,711</td><td>더스크랙 하프랙 84만 원(5,018) · 멜킨 · 이고진</td><td><span class="pill eq">MXSSIVE 경쟁</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>새로 추적 시작한 12곳</h2>
+  <p class="sub">다음 자동 뉴스 수집부터 포함됩니다(<code>scripts/config.json</code> 등록 완료).</p>
+  <div class="tablebox">
+  <table>
+    <thead><tr><th>브랜드</th><th>구분</th><th>근거</th></tr></thead>
+    <tbody>
+      <tr><td><b>뉴트리코스트</b></td><td>크레아틴·보충제(해외)</td><td>크레아틴 리뷰 1위 3.9만, 삼대오백·잠백이 연관검색 반복</td></tr>
+      <tr><td><b>메이크바디</b></td><td>단백질 쉐이크</td><td>쉐이크 4개 매대 상위(3.1만)</td></tr>
+      <tr><td><b>뉴욕웨이</b></td><td>WPI 프로틴</td><td>WPI 2kg 69,900원(1만)</td></tr>
+      <tr><td><b>베네틴</b></td><td>프로틴</td><td>5개 키워드 11회 노출, 칼로바이 연관검색 1순위</td></tr>
+      <tr><td><b>크런틴</b></td><td>프로틴</td><td>여성 쉐이크 포함 3개 키워드 11회 노출</td></tr>
+      <tr><td><b>그리밀</b> <span class="pill">WELLNESS</span></td><td>곡물맛 쉐이크</td><td>단백질쉐이크 5.4만, 추천 브랜드 광고 집행</td></tr>
+      <tr><td><b>프로티원</b> <span class="pill">WELLNESS</span></td><td>곡물맛 쉐이크·간식</td><td>단백질쉐이크 3.8만</td></tr>
+      <tr><td><b>더단백(빙그레)</b></td><td>RTD 단백질</td><td>단백질 음료 상위 3개 상품, 후보 큐에서 승격</td></tr>
+      <tr><td><b>빼바</b></td><td>저당 단백질바</td><td>저당 단백질바 리뷰 1위 1.5만</td></tr>
+      <tr><td><b>시크(SCHIEK)</b> <span class="pill eq">장비</span></td><td>리프팅 벨트</td><td>벨트 리뷰 1위 1.2만</td></tr>
+      <tr><td><b>멜킨스포츠</b> <span class="pill eq">장비</span></td><td>홈짐·덤벨</td><td>덤벨·파워랙 9개 상품 노출</td></tr>
+      <tr><td><b>더스크랙</b> <span class="pill eq">장비</span></td><td>홈짐 랙</td><td>파워랙 리뷰 1위 5,018</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="sub">쿼리 교정: 익스트림 <code>익스트림 프로틴</code> → <code>익스트림 아르기닌</code> · 이그니스 <code>이그니스 단백질</code> → <code>랩노쉬</code></p>
+  <div class="chips" aria-label="후보 대기 브랜드">
+    <span class="chip">헬시오 <small>WPI</small></span><span class="chip">봄날이오다 <small>산양유</small></span><span class="chip">베노프 <small>여성 쉐이크</small></span><span class="chip">모닝파파 <small>임산부</small></span><span class="chip">제트리션 <small>정제 크레아틴</small></span><span class="chip">엑스텐드 <small>BCAA</small></span><span class="chip">종근당건강 <small>이너뷰티</small></span><span class="chip">랩온랩 <small>비오틴</small></span><span class="chip">하빈져 <small>벨트</small></span><span class="chip">케이필 <small>미용 아령</small></span>
+  </div>
+  <p class="sub">↑ 후보 대기 10곳 — 다음 회차에 반복 노출되면 추적으로 승격</p>
+</section>
+
+<section>
+  <h2>이번 달 할 것</h2>
+  <div class="cols">
+    <div class="act"><h3>삼대오백</h3><ul><li>크레아틴 가격·상세페이지·쿠폰을 <b>뉴트리코스트(19,270원)</b> 기준으로 재점검</li><li>부스터 매대 우위를 <b>WPI 매대</b>(현재 상위 8개 밖)로 확장</li></ul></div>
+    <div class="act"><h3>MXSSIVE</h3><ul><li>제로투히어로는 스트랩 <b>판매처 106곳</b> — 리셀 유통망 규모 비교</li><li>벨트 매대 시크·제로투히어로 가격대(9~15만 원) 대비 포지션 점검</li></ul></div>
+    <div class="act"><h3>WELLNESS</h3><ul><li>타깃 키워드를 '다이어트 쉐이크'·'단백질쉐이크'로 설정</li><li>상위 문법은 <b>곡물맛 + 식사대용</b> + 맛 탐색 스타터팩</li></ul></div>
+  </div>
+  <div class="idea">
+    <span class="label">💭 아이디어 (가설 — 데이터 출처 아님)</span>
+    <ul>
+      <li>WELLNESS 첫 쉐이크를 <b>곡물맛 + 소포장 스타터팩</b>으로 내면 상위 매대 문법을 따르면서 진입 비용을 낮출 수 있다.</li>
+      <li>미용 아령이 덤벨 1위 → <b>WELLNESS 쉐이크 + 라이트 아령 번들</b>(MXSSIVE 소싱) 테스트 후보.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span><b>수집 한계</b> — 비로그인이라 '리뷰 많은순' 정렬은 네이버 로그인 요구로 막혀 기본 랭킹 상위 약 40개만 봤습니다. 리뷰 수는 판매량이 아닌 누적 후기 수입니다. ego 브라우저에 네이버 로그인을 해두면 다음 회차엔 더 깊게 볼 수 있습니다.</span>
+  <span><b>근거</b> — 위키 <code>경쟁사-스토어-스냅샷-2026-11</code> · <code>경쟁사-워치리스트</code> · 원본 <code>raw/2026-11-05_ego_네이버쇼핑_경쟁사스냅샷.json</code></span>
+  <span>검색 페이지: <a href="https://search.shopping.naver.com/search/all?query=크레아틴" target="_blank" rel="noopener">크레아틴</a> · <a href="https://search.shopping.naver.com/search/all?query=다이어트%20쉐이크" target="_blank" rel="noopener">다이어트 쉐이크</a> · <a href="https://search.shopping.naver.com/search/all?query=부스터%20헬스" target="_blank" rel="noopener">부스터 헬스</a> · <a href="https://search.shopping.naver.com/search/all?query=헬스%20벨트%20리프팅" target="_blank" rel="noopener">헬스 벨트 리프팅</a> · <a href="https://search.shopping.naver.com/search/all?query=홈트%20덤벨" target="_blank" rel="noopener">홈트 덤벨</a></span>
+  <span>생성 2026-11-05 · 위키가 갱신되면 재생성하는 스냅샷입니다.</span>
+</footer>
+</div>
